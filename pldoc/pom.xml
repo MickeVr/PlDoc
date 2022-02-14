@@ -328,43 +328,6 @@
                </filesets>
             </configuration>
          </plugin>
-         <!--
-     Override on the command-line 
-     mvn -Dchanges.smtpHost=localhost -Dchanges.toAddresses=sturton@sf.net -Dchanges.fromDeveloperId=sturton changes:announcement-mail
-    -->
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-changes-plugin</artifactId>
-            <version>2.9</version>
-            <configuration>
-               <!--smtpHost>localhost</smtpHost>
-	    <smtpPort implementation="java.lang.Integer">25</smtpPort-->
-               <mailSender>
-                  <name>PLDoc Release Management</name>
-                  <email>noreply@pldoc.sourceforge.net</email>
-               </mailSender>
-               <toAddresses>
-                  <toAddress implementation="java.lang.String">altumano@users.sourceforge.net</toAddress>
-                  <toAddress implementation="java.lang.String">pldoc-chat@lists.sourceforge.net</toAddress>
-               </toAddresses>
-            </configuration>
-            <executions>
-               <execution>
-                  <id>announcement-generate</id>
-                  <phase>deploy</phase>
-                  <goals>
-                     <goal>announcement-generate</goal>
-                  </goals>
-               </execution>
-               <execution>
-                  <id>announcement-mail</id>
-                  <phase>deploy</phase>
-                  <goals>
-                     <goal>announcement-mail</goal>
-                  </goals>
-               </execution>
-            </executions>
-         </plugin>
          <!-- Force conservative source and target requirements -->
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -442,26 +405,6 @@
    </build>
    <reporting>
     <plugins>
-      <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-changes-plugin</artifactId>
-          <!-- <inherited>false</inherited> -->
-          <version>2.9</version>
-          <reportSets>
-            <reportSet>
-                <reports>
-                  <report>changes-report</report>
-                </reports>
-            </reportSet>
-          </reportSets>
-          <configuration>
-            <issueManagementSystems>
-                <issueManagementSystem>changes.xml</issueManagementSystem>
-                <issueManagementSystem>Sourceforge2</issueManagementSystem>
-                <url>https://sourceforge.net/p/pldoc/bugs/</url>
-            </issueManagementSystems>
-          </configuration>
-      </plugin>
       <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-project-info-reports-plugin</artifactId>
