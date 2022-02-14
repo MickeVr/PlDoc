@@ -797,7 +797,7 @@ void pragma_clause() throws org.xml.sax.SAXException :
 		name=<RESTRICT_REFERENCES> "(" (functionName=ID() /*| <_DEFAULT>*/)
 		("," (ID() | StringLiteral() /* 20110526 <STRING_LITERAL> */) )+	")"
 		|
-		name=<EXCEPTION_INIT> "(" exceptionName=<IDENTIFIER> "," ["+"|"-"] errorNumber=numericLiteral() ")"
+		name=<EXCEPTION_INIT> "(" exceptionName=<IDENTIFIER> "," (["+"|"-"] errorNumber=numericLiteral() | qualifiedName()) ")"
 		|
 		name=<INTERFACE> "(" <IDENTIFIER> "," <IDENTIFIER> "," numericLiteral() ")"
 	)

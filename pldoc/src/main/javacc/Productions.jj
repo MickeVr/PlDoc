@@ -2350,8 +2350,8 @@ String Argument() :
 	StringBuffer sb = new StringBuffer();
 }
 {
-	//[LOOKAHEAD(2) unqualifiedID() "=>"] Expression()
-	[LOOKAHEAD(2) (thisToken=unqualifiedID()) {sb.append(thisToken); } ("=>" | <AS> ) { sb.append(" "); sb.append(token.image.toUpperCase()); sb.append(" "); } ] 
+	//[LOOKAHEAD(2) (numericLiteral() | unqualifiedID()) "=>"] Expression()
+	[LOOKAHEAD(2) (thisToken=unqualifiedID() | numericLiteral()) {sb.append(thisToken); } ("=>" | <AS> ) { sb.append(" "); sb.append(token.image.toUpperCase()); sb.append(" "); } ]
         (string = Expression() ) {sb.append(string); } 
 	//Allow Using CharacterSet suffix clause  
 	[
@@ -2424,7 +2424,7 @@ void pragma(boolean isPackageLevel) throws org.xml.sax.SAXException :
 		name=<RESTRICT_REFERENCES> "(" (functionName=ID() /*| <_DEFAULT>*/)
 		("," (ID() | StringLiteral() /* 20110526 <STRING_LITERAL> */ ) )+	")"
 		|
-		name=<EXCEPTION_INIT> "(" exceptionName=<IDENTIFIER> "," ["+"|"-"] errorNumber=numericLiteral() ")"
+		name=<EXCEPTION_INIT> "(" exceptionName=<IDENTIFIER> "," (["+"|"-"] errorNumber=numericLiteral() | qualifiedName()) ")"
 		|
 		name=<INTERFACE> "(" <IDENTIFIER> "," ID() [ "," numericLiteral() ] ")"
 		| //SRT 20110531 
